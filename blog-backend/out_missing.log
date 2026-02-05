@@ -1,0 +1,10 @@
+[dotenv@17.2.3] injecting env (4) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.3.0) to .\node_modules\@prisma\client in 174ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+

@@ -1,0 +1,3 @@
+src/controllers/authController.ts(54,13): error TS2322: Type '{ email: string; name: string; }' is not assignable to type '(Without<UserCreateInput, UserUncheckedCreateInput> & UserUncheckedCreateInput) | (Without<...> & UserCreateInput)'.
+  Type '{ email: string; name: string; }' is not assignable to type 'Without<UserUncheckedCreateInput, UserCreateInput> & UserCreateInput'.
+    Property 'password' is missing in type '{ email: string; name: string; }' but required in type 'UserCreateInput'.
