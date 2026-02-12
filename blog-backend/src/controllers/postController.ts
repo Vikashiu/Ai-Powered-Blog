@@ -19,6 +19,7 @@ export const getPosts = async (req: Request, res: Response) => {
 
         res.json(transformedPosts);
     } catch (error) {
+        console.error('getPosts error:', error);
         res.status(500).json({ error: 'Failed to fetch posts' });
     }
 };

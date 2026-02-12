@@ -21,7 +21,10 @@ const pg_1 = require("pg");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const connectionString = process.env.DATABASE_URL;
-const pool = new pg_1.Pool({ connectionString });
+const pool = new pg_1.Pool({
+    connectionString,
+    ssl: { rejectUnauthorized: false }
+});
 const adapter = new adapter_pg_1.PrismaPg(pool);
 // Pass the adapter to the client
 const prisma = new client_1.PrismaClient({ adapter });

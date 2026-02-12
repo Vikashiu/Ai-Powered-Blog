@@ -27,6 +27,7 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.json(transformedPosts);
     }
     catch (error) {
+        console.error('getPosts error:', error);
         res.status(500).json({ error: 'Failed to fetch posts' });
     }
 });
