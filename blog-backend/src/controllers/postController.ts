@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import prisma from '../config/db';
 import { createPostSchema, updatePostSchema } from '../schemas/post.schema';
 
+
 export const getPosts = async (req: Request, res: Response) => {
     try {
         console.log("getPosts reached");
@@ -11,7 +12,7 @@ export const getPosts = async (req: Request, res: Response) => {
         });
 
         // Transform to include authorName for frontend
-        const transformedPosts = posts.map(post => ({
+        const transformedPosts = posts.map((post: any) => ({
             ...post,
             authorName: post.author.name
         }));

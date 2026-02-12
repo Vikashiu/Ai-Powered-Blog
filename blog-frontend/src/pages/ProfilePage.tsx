@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, Mail, Calendar, Shield, Edit2, LogOut, FileText, MessageSquare, TrendingUp, Camera } from 'lucide-react';
+import { Mail, Calendar, Shield, Edit2, LogOut, FileText, MessageSquare, TrendingUp, Camera } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { apiService } from '../services/apiService';
 import type { BlogPost } from '../types';
@@ -26,12 +26,12 @@ const ProfilePage: React.FC = () => {
         }
 
         apiService.getPosts().then(data => {
-            const userPosts = data.filter(p => p.authorId === user.id);
+            const userPosts = data.filter((p: BlogPost) => p.authorId === user.id);
             setPosts(userPosts);
             setStats({
                 totalPosts: userPosts.length,
-                publishedPosts: userPosts.filter(p => p.status === 'PUBLISHED').length,
-                draftPosts: userPosts.filter(p => p.status === 'DRAFT').length,
+                publishedPosts: userPosts.filter((p: BlogPost) => p.status === 'PUBLISHED').length,
+                draftPosts: userPosts.filter((p: BlogPost) => p.status === 'DRAFT').length,
                 totalViews: 12450 + (userPosts.length * 120) // Mock calculation
             });
         }).catch(error => {

@@ -1,0 +1,11 @@
+import { Request, Response } from 'express';
+export declare const generateBlogDraft: (req: Request, res: Response) => Promise<void>;
+export declare const generateBlogDraftStream: (req: Request, res: Response) => Promise<void>;
+export declare const improveContent: (req: Request, res: Response) => Promise<void>;
+export declare const generateTitle: (req: Request, res: Response) => Promise<void>;
+export declare const generateMetadata: (req: Request, res: Response) => Promise<void>;
+export declare const chatWithGemini: (req: Request, res: Response) => Promise<void>;
+export declare const analyzeImage: (req: Request, res: Response) => Promise<void>;
+export declare const generateImage: (req: Request, res: Response) => Promise<void>;
+export declare const transcribeAudio: (req: Request, res: Response) => Promise<void>;
+export declare const generateSpeech: (req: Request, res: Response) => Promise<void>;

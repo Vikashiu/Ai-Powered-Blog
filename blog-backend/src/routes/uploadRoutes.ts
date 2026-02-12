@@ -22,7 +22,7 @@ const storage = new CloudinaryStorage({
     folder: 'lumina-blog', // The folder name in your Cloudinary account
     allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
     // Optional: Resize excessively large images automatically
-    transformation: [{ width: 1200, crop: "limit" }] 
+    transformation: [{ width: 1200, crop: "limit" }]
   } as any
 });
 
@@ -31,10 +31,10 @@ const upload = multer({ storage });
 // 3. The Endpoint: POST /api/upload
 router.post('/', upload.single('image'), (req, res) => {
   if (!req.file) {
-     res.status(400).json({ error: 'No file uploaded' });
-     return;
+    res.status(400).json({ error: 'No file uploaded' });
+    return;
   }
-  
+
   // Cloudinary returns the hosted URL in req.file.path
   res.json({ url: req.file.path });
 });

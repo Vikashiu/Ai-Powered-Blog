@@ -23,7 +23,7 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             orderBy: { createdAt: 'desc' }
         });
         // Transform to include authorName for frontend
-        const transformedPosts = posts.map(post => (Object.assign(Object.assign({}, post), { authorName: post.author.name })));
+        const transformedPosts = posts.map((post) => (Object.assign(Object.assign({}, post), { authorName: post.author.name })));
         res.json(transformedPosts);
     }
     catch (error) {
