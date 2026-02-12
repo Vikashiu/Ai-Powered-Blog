@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, Shield, Globe, Zap, ArrowRight, Brain, Terminal, Cpu, ArrowLeft } from 'lucide-react';
+import { Shield, Zap, ArrowRight, Brain, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 

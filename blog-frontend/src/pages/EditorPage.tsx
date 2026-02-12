@@ -7,8 +7,8 @@ import type { RichEditorHandle } from '../components/RichEditor';
 import { AiSidebar } from '../components/AiSidebar';
 // CHANGE 1: Import the real API service
 import { apiService } from '../services/apiService';
-import { generateBlogDraft, improveContent, generateMetadata, generateTitle } from '../services/geminiService';
-import type { BlogPost, BlogStatus } from '../types';
+import { improveContent, generateMetadata, generateTitle } from '../services/geminiService';
+import type { BlogStatus } from '../types';
 import { useStore } from '../store/useStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format } from 'date-fns';

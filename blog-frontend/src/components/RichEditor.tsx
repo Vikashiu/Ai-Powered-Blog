@@ -2,10 +2,10 @@
 import React, { useEffect, useRef, useState, useCallback, useImperativeHandle, forwardRef } from 'react';
 import {
     Bold, Italic, Heading1, Heading2, Heading3, List, ListOrdered, Quote,
-    Image as ImageIcon, Sparkles, Plus, Code, Table as TableIcon,
-    Youtube, Minus, AlertCircle, GripVertical, Trash2, Copy, ArrowUp, ArrowDown, Type,
-    CheckSquare, Palette, Highlighter, AlertTriangle, X, ChevronRight, Wand2, Scissors, MoveHorizontal, Briefcase, FileText,
-    Loader2, Clock, AlignLeft, AlignCenter, AlignRight, MoreHorizontal, Grid, Play, Sun, Moon
+    Image as ImageIcon, Sparkles, Plus, Code,
+    Youtube, Minus, AlertCircle, GripVertical, Trash2, Copy, ArrowUp, Type,
+    Highlighter, X, Wand2, Scissors,
+    Loader2, Clock, AlignLeft, AlignCenter, AlignRight, Grid, Sun, Moon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { generateImage } from '../services/geminiService';

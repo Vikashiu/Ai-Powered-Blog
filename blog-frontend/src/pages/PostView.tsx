@@ -219,7 +219,6 @@ const PostView: React.FC = () => {
     };
 
     const shareUrl = window.location.href;
-    const shareText = post ? `Check out "${post.title}" on Nexis Intelligence` : '';
 
     if (!post) return <div className="flex justify-center p-20 min-h-screen items-center bg-neutral-50 dark:bg-[#050505]"><Loader2 className="animate-spin text-orange-500" size={32} /></div>;
 
