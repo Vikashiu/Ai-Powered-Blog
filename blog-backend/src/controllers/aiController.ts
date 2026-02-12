@@ -3,11 +3,11 @@ import { GoogleGenAI, Type, Modality } from '@google/genai';
 import { generateAgenticDraft } from '../agents/blogGraph';
 
 // Models - Using 2.5 versions for better performance
-const TEXT_MODEL = 'gemini-2.5-pro';
-const COMPLEX_TEXT_MODEL = 'gemini-2.5-pro';
+const TEXT_MODEL = 'gemini-2.5-flash';
+const COMPLEX_TEXT_MODEL = 'gemini-2.5-flash';
 const IMAGE_GEN_MODEL = 'imagen-3.0-generate-001';
-const AUDIO_MODEL = 'gemini-2.5-pro';
-const TTS_MODEL = 'gemini-2.5-pro';
+const AUDIO_MODEL = 'gemini-2.5-flash';
+const TTS_MODEL = 'gemini-2.5-flash';
 
 // Initialize AI client
 const getAIClient = () => {
