@@ -53,11 +53,11 @@ exports.generateSpeech = exports.transcribeAudio = exports.generateImage = expor
 const genai_1 = require("@google/genai");
 const blogGraph_1 = require("../agents/blogGraph");
 // Models - Using 2.5 versions for better performance
-const TEXT_MODEL = 'gemini-2.5-flash';
-const COMPLEX_TEXT_MODEL = 'gemini-2.5-flash';
+const TEXT_MODEL = 'gemini-2.5-pro';
+const COMPLEX_TEXT_MODEL = 'gemini-2.5-pro';
 const IMAGE_GEN_MODEL = 'imagen-3.0-generate-001';
-const AUDIO_MODEL = 'gemini-2.5-flash';
-const TTS_MODEL = 'gemini-2.5-flash';
+const AUDIO_MODEL = 'gemini-2.5-pro';
+const TTS_MODEL = 'gemini-2.5-pro';
 // Initialize AI client
 const getAIClient = () => {
     const apiKey = process.env.GEMINI_API_KEY;

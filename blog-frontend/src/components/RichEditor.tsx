@@ -79,13 +79,14 @@ const RichEditor = forwardRef<RichEditorHandle, RichEditorProps>(({ content, onC
 
             const currentHTML = editorRef.current.innerHTML;
             if (content !== currentHTML) {
-                // If the editor is focused, we assume the user is typing and the prop update is just the echo.
-                // We only force update if the difference is large (suggesting an external replace/paste) or if not focused.
                 const isFocused = document.activeElement === editorRef.current;
+                const lengthDiff = Math.abs(content.length - currentHTML.length);
 
-                // Check if content is empty (reset) or length diff is significant (> 10 chars)
-                // or if not focused (e.g. initial load or sidebar insert while blurred)
-                if (!isFocused || Math.abs(content.length - currentHTML.length) > 10 || content === '') {
+                // Always update if:
+                // 1. Content is being reset to empty
+                // 2. Large change (AI draft, paste, etc.) with diff > 10 chars
+                // 3. Editor is not focused (initial load, external updates)
+                if (content === '' || lengthDiff > 10 || !isFocused) {
                     editorRef.current.innerHTML = content;
                 }
             }

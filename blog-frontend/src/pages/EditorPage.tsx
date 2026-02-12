@@ -12,6 +12,7 @@ import type { BlogStatus } from '../types';
 import { useStore } from '../store/useStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format } from 'date-fns';
+import { marked } from 'marked';
 
 const EditorPage: React.FC = () => {
     const navigate = useNavigate();
@@ -123,7 +124,10 @@ const EditorPage: React.FC = () => {
                             if (update.type === 'log') {
                                 setGenerationLogs(prev => [...prev, update.message]);
                             } else if (update.type === 'result') {
-                                setContent(update.content);
+                                console.log('🎯 AI Draft received, length:', update.content?.length);
+                                // Convert markdown to HTML
+                                const htmlContent = marked.parse(update.content || '') as string;
+                                setContent(htmlContent);
                                 addNotification('success', 'Draft Generated!');
                                 setGenerationLogs(prev => [...prev, "✅ Content generated successfully!"]);
                                 setTimeout(() => setShowTerminal(false), 2000);
