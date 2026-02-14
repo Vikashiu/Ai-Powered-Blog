@@ -127,7 +127,13 @@ const EditorPage: React.FC = () => {
                                 console.log('🎯 AI Draft received, length:', update.content?.length);
                                 // Convert markdown to HTML
                                 const htmlContent = marked.parse(update.content || '') as string;
-                                setContent(htmlContent);
+
+                                // Clear editor first, then set new content to force re-render
+                                setContent('');
+                                setTimeout(() => {
+                                    setContent(htmlContent);
+                                }, 50);
+
                                 addNotification('success', 'Draft Generated!');
                                 setGenerationLogs(prev => [...prev, "✅ Content generated successfully!"]);
                                 setTimeout(() => setShowTerminal(false), 2000);
