@@ -12,7 +12,7 @@ import type { BlogStatus } from '../types';
 import { useStore } from '../store/useStore';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format } from 'date-fns';
-import { marked } from 'marked';
+
 
 const EditorPage: React.FC = () => {
     const navigate = useNavigate();
@@ -125,15 +125,10 @@ const EditorPage: React.FC = () => {
                                 setGenerationLogs(prev => [...prev, update.message]);
                             } else if (update.type === 'result') {
                                 console.log('🎯 AI Draft received, length:', update.content?.length);
-                                // Convert markdown to HTML
-                                const htmlContent = marked.parse(update.content || '') as string;
-
-                                // Clear editor first, then set new content to force re-render
-                                setContent('');
-                                setTimeout(() => {
-                                    setContent(htmlContent);
-                                }, 50);
-
+                                // The AI returns content, set it directly
+                                // Note: AI might return markdown or HTML, RichEditor expects HTML
+                                const content = update.content || '';
+                                setContent(content);
                                 addNotification('success', 'Draft Generated!');
                                 setGenerationLogs(prev => [...prev, "✅ Content generated successfully!"]);
                                 setTimeout(() => setShowTerminal(false), 2000);
