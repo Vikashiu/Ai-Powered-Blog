@@ -1,133 +1,155 @@
-# 🧠 Nexis Intelligence - AI-Powered Blogging Platform
+# 🚀 Nexis - Agentic AI Powered Blog Platform
 
-**Nexis** is a next-generation blogging platform that integrates advanced AI agents to help creators draft, refine, and publish content autonomously. It features a modern, dark-themed UI and a powerful backend driven by **Google Gemini 1.5 Flash**.
+Nexis is a cutting-edge, full-stack blogging platform that redefines content creation. It merges a **Notion-style rich text editor** with a **sophisticated Agentic AI workflow**, allowing users to research, plan, and write high-quality blog posts autonomously.
 
----
+## 🌟 Key Highlights
 
-## ✨ Key Features
-
-### 🤖 **Agentic AI Writer**
-- **Autonomous Drafting:** Click one button, and an AI agent (powered by **LangGraph**) plans, researches, and writes a full blog post for you.
-- **Real-Time Terminal:** Watch the AI's "thought process" live in a hacker-style terminal overlay as it researches and writes.
-- **Streaming Architecture:** Uses Server-Sent Events (SSE) for instant feedback.
-
-### 🎨 **Multimodal AI Tools**
-- **Magic Title:** Auto-generates SEO-friendly titles based on your content.
-- **Smart Tags:** Analyzes your post to suggest relevant tags.
-- **Content Refinement:** "Improve" button to rewrite sections for clarity, tone, or grammar.
-- **Vision:** Upload images to analyze them or generate cover images from prompts.
-- **Audio:** Transcribe audio notes or convert your blog post to speech.
-
-### 💻 **Modern Tech Stack**
-- **Frontend:** React (Vite), TailwindCSS, Framer Motion, Lucide Icons.
-- **Backend:** Node.js, Express, TypeScript.
-- **AI Core:** Google Gemini 1.5 Flash via Google GenAI SDK.
-- **Agent Framework:** LangGraph.js + Tavily (for web research).
-- **Database:** PostgreSQL (via Prisma ORM).
-- **Storage:** Cloudinary (for images).
-- **Authentication:** Custom JWT Auth.
+-   **🤖 Agentic AI Writer**: A LangGraph-based multi-agent system that acts as a researcher, planner, and writer.
+-   **📝 Advanced Rich Editor**: A block-based editor (like Notion) with drag-and-drop, slash commands, and bubble menus.
+-   **🎨 Modern UI/UX**: Built with React, TailwindCSS, and Framer Motion for a smooth, premium experience.
+-   **🔐 Secure Foundation**: Robust authentication and database architecture using PostgreSQL and Prisma.
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Feature Deep Dive
 
-### Prerequisites
-- Node.js (v18+)
-- PostgreSQL Database
-- Cloudinary Account
-- API Keys: 
-  - `GEMINI_API_KEY` (Google AI Studio)
-  - `TAVILY_API_KEY` (Tavily Search)
+### 🤖 1. The Agentic AI Workflow
+Unlike simple AI wrappers, Nexis uses a structured **Graph Neural Network** approach to content generation:
+1.  **Router Agent**: Analyzes your topic to determine if live web research is required.
+2.  **Researcher Agent** (Tavily API): If needed, browses the web to gather real-time facts, statistics, and recent developments.
+3.  **Planner Agent**: Synthesizes research into a structured blog outline with chapters and key points.
+4.  **Writer Agent**: systematically writes each section, ensuring coherence and depth, then compiles the final HTML.
 
-### 1. Backend Setup
+### ✍️ 2. The Rich Text Editor
+A "What You See Is What You Get" (WYSIWYG) editor built for power users:
+-   **Slash Commands (`/`)**: Quickly insert headings, lists, quotes, code blocks, dividers, and media.
+-   **Bubble Menu**: Highlight text to access quick formatting (Bold, Italic, Link, AI Improve).
+-   **Drag & Drop**: Reorder any block (paragraph, image, heading) by dragging the handle on the left.
+-   **Media Embeds**:
+    -   **Images**: Drag & drop upload (powered by Cloudinary) or generate via AI.
+    -   **Video**: Embed YouTube videos directly.
+    -   **Galleries**: Create grid layouts for multiple images.
+-   **Zen Mode**: Toggle a distraction-free full-screen writing interface.
 
+### 🧠 3. AI-Assisted Tools
+Beyond full drafts, the editor offers granular AI assistance:
+-   **Magic Title**: Generates SEO-optimized titles based on your content.
+-   **Auto-Tagging**: Analyzes your post to suggest relevant tags.
+-   **Text Improvement**: Highlight any text and ask AI to "Fix grammar", "Make it punchy", or "Expand this".
+-   **Image Generation**: Generate custom cover images or inline visuals using Google's Imagen model.
+
+### 📊 4. Dashboard & Analytics
+-   **Command Center**: View all your drafts, scheduled, and published posts in a sortable list.
+-   **Status Tracking**: Visual badges for Draft, Scheduled, and Published states.
+-   **Analytics UI**: A visual dashboard showing views, engagement rates, and reader trends (UI implementation).
+
+### ⚙️ 5. Backend & Infrastructure
+-   **REST API**: Robust Node.js/Express API with typed routes.
+-   **Database**: PostgreSQL managed via Prisma ORM for type-safe database queries.
+-   **Authentication**: JWT-based stateless authentication with secure cookie handling.
+-   **Storage**: Cloudinary integration for optimized image hosting and delivery.
+
+---
+
+## 🏗️ Technical Architecture
+
+### Frontend Stack
+-   **Framework**: React (Vite)
+-   **Language**: TypeScript
+-   **Styling**: TailwindCSS, Autoprefixer
+-   **Animations**: Framer Motion
+-   **State Management**: Zustand
+-   **Routing**: React Router v6
+-   **Icons**: Lucide React
+-   **HTTP Client**: Axios
+
+### Backend Stack
+-   **Runtime**: Node.js
+-   **Framework**: Express.js
+-   **Language**: TypeScript
+-   **Database**: PostgreSQL
+-   **ORM**: Prisma
+-   **AI Engines**:
+    -   **LangChain / LangGraph**: Agent orchestration.
+    -   **Google Gemini (2.5 Flash)**: LLM for reasoning and writing.
+    -   **Tavily**: Search API for web research.
+-   **Image Storage**: Cloudinary SDK
+
+---
+
+## 📋 Prerequisites
+
+Before running the project, ensure you have:
+1.  **Node.js** (v18+)
+2.  **PostgreSQL** (Local or hosted like Supabase/Neon)
+3.  **API Keys**:
+    -   [Google AI Studio](https://aistudio.google.com/) (Gemini API)
+    -   [Tavily](https://tavily.com/) (Search API)
+    -   [Cloudinary](https://cloudinary.com/) (Image Storage)
+
+---
+
+## 🚀 Installation Guide
+
+### 1. Clone & Install
+```bash
+git clone <repository-url>
+cd blog1
+```
+
+### 2. Backend Setup
 ```bash
 cd blog-backend
 npm install
 ```
-
-**Environment Variables (`blog-backend/.env`):**
+Create a `.env` file in `blog-backend/` with the following:
 ```env
 PORT=5000
-DATABASE_URL="postgresql://user:password@localhost:5432/blogdb"
-JWT_SECRET="your_secret_key"
-GEMINI_API_KEY="your_google_ai_key"
-TAVILY_API_KEY="your_tavily_key"
-CLOUDINARY_CLOUD_NAME="your_cloud_name"
-CLOUDINARY_API_KEY="your_api_key"
-CLOUDINARY_API_SECRET="your_api_secret"
-```
+DATABASE_URL="postgresql://user:password@localhost:5432/blog_db?schema=public"
 
-**Run Database Migrations:**
-```bash
-npm run prisma:generate
-npm run prisma:push
-```
+# Auth
+JWT_SECRET=your_complex_secret_string
 
-**Start the Server:**
+# AI Services
+GEMINI_API_KEY=your_gemini_key
+TAVILY_API_KEY=your_tavily_key
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_key
+CLOUDINARY_API_SECRET=your_secret
+```
+Initialize the database:
 ```bash
+npx prisma db push
+npm run build # Generates Prisma Client
 npm run dev
-# or
-npm run start
 ```
 
-### 2. Frontend Setup
-
+### 3. Frontend Setup
+Open a new terminal:
 ```bash
 cd blog-frontend
 npm install
-```
-
-**Run the Frontend:**
-```bash
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
----
-
-## 🧭 Application Structure
-
-```
-d:/blog1/
-├── blog-backend/           # Express API & AI Agents
-│   ├── src/
-│   │   ├── agents/         # LangGraph workflows (blogGraph.ts)
-│   │   ├── controllers/    # API Controllers (aiController, postController)
-│   │   ├── routes/         # Express Routes
-│   │   └── index.ts        # Server Entry
-│   └── prisma/             # Database Schema
-│
-├── blog-frontend/          # React App
-│   ├── src/
-│   │   ├── components/     # UI Components (RichEditor, Terminal, Sidebar)
-│   │   ├── pages/          # Pages (EditorPage, BlogList, Dashboard)
-│   │   ├── services/       # API Services (apiService, geminiService)
-│   │   └── types/          # TypeScript Interfaces
-│   └── index.css           # Global Styles & Tailwind
-│
-└── README.md               # You are here
-```
+Access the app at `http://localhost:5173`.
 
 ---
 
 ## 🎮 How to Use
 
-1.  **Sign Up/Login:** Create an account to access the dashboard.
-2.  **Create Post:** Click "Write" to open the Editor.
-3.  **Autonomous Draft:**
-    - Enter a topic/title.
-    - Click **"AUTONOMOUS DRAFT"**.
-    - Watch the terminal logs as the agent performs research and writing.
-4.  **Edit & Polish:** Use the Rich Text Editor to finalize your content.
-5.  **Publish:** Save as Draft, Schedule, or Publish immediately.
+1.  **Sign Up**: Create an account on the login page.
+2.  **Create Post**: Click "Initialize New Draft" on the dashboard.
+3.  **Agentic Draft**:
+    -   Open the sidebar.
+    -   Enter a topic (e.g., "Impact of Quantum Computing on Cryptography").
+    -   Click "Autonomous Draft".
+    -   Watch the terminal output as the agent researches and writes.
+4.  **Manual Editing**: Use `/` to insert blocks or drag blocks to rearrange.
+5.  **Publish**: Click "Save" -> "Publish" or schedule it for a later date.
 
 ---
 
-## 🛠️ Recent Updates
-- **v2.1:** Added real-time streaming logs for AI generation.
-- **v2.0:** Migrated UI to Dark Mode & added "Zen Mode" editor.
-- **v1.5:** Integrated LangGraph for agentic workflows.
-
----
-
+## 📄 License
+This project is licensed under the ISC License.

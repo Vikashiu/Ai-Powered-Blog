@@ -106,17 +106,25 @@ const EditorPage: React.FC = () => {
 
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
+            let buffer = '';
 
             while (true) {
                 const { done, value } = await reader.read();
                 if (done) break;
 
-                const chunk = decoder.decode(value);
-                const lines = chunk.split('\n\n');
+                const chunk = decoder.decode(value, { stream: true });
+                buffer += chunk;
+
+                const lines = buffer.split('\n\n');
+
+                // If buffer ends with \n\n, lines will have an empty string at the end.
+                // If buffer does NOT end with \n\n, the last element is the incomplete fragment.
+                // We pop the last element to keep it in the buffer for the next iteration.
+                buffer = lines.pop() || '';
 
                 for (const line of lines) {
-                    if (line.startsWith('data: ')) {
-                        const dataStr = line.replace('data: ', '');
+                    if (line.trim().startsWith('data: ')) {
+                        const dataStr = line.replace('data: ', '').trim();
                         if (dataStr === '"Stream Complete"') continue;
 
                         try {
@@ -125,8 +133,6 @@ const EditorPage: React.FC = () => {
                                 setGenerationLogs(prev => [...prev, update.message]);
                             } else if (update.type === 'result') {
                                 console.log('🎯 AI Draft received, length:', update.content?.length);
-                                // The AI returns content, set it directly
-                                // Note: AI might return markdown or HTML, RichEditor expects HTML
                                 const content = update.content || '';
                                 setContent(content);
                                 addNotification('success', 'Draft Generated!');
@@ -137,7 +143,7 @@ const EditorPage: React.FC = () => {
                                 setGenerationLogs(prev => [...prev, `❌ Error: ${update.message}`]);
                             }
                         } catch (e) {
-                            // ignore parse errors
+                            console.warn('Incomplete JSON chunk, buffering...', e);
                         }
                     }
                 }
